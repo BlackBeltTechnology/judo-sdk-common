@@ -1,20 +1,22 @@
 package hu.blackbelt.judo.sdk.query;
 
-public class EnumerationFilter<E> implements Filter {
+import hu.blackbelt.judo.sdk.Enumeration;
+
+public class EnumerationFilter implements Filter {
 
     private EnumerationOperation operation;
-    private E value;
+    private Enumeration value;
 
-    private EnumerationFilter(EnumerationOperation operation, E value) {
+    private EnumerationFilter(EnumerationOperation operation, Enumeration value) {
         this.operation = operation;
         this.value = value;
     }
 
-    public static <E> EnumerationFilter equalTo(E value) {
+    public static EnumerationFilter equalTo(Enumeration value) {
         return new EnumerationFilter(EnumerationOperation.EQUAL_TO, value);
     }
 
-    public static <E> EnumerationFilter notEqualTo(E value) {
+    public static EnumerationFilter notEqualTo(Enumeration value) {
         return new EnumerationFilter(EnumerationOperation.NOT_EQUAL_TO, value);
     }
 
@@ -25,7 +27,6 @@ public class EnumerationFilter<E> implements Filter {
 
     @Override
     public String getValueAsString() {
-        // FIXME - return enumeration literal as JQL string
-        return value.toString();
+        return value.getFqName();
     }
 }

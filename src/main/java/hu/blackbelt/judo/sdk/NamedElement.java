@@ -1,4 +1,4 @@
-package hu.blackbelt.judo.sdk.query;
+package hu.blackbelt.judo.sdk;
 
 public interface NamedElement {
 
