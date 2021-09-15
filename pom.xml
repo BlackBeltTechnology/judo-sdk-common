@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>hu.blackbelt.judo</groupId>
     <artifactId>judo-sdk-common</artifactId>
@@ -53,7 +54,7 @@
         <emf-version>2.21.0</emf-version>
         <judo-meta-asm-version>1.1.0.20210714_100105_add015a_develop</judo-meta-asm-version>
         <judo-dao-api-version>1.0.2.20210830_140644_42d048a_develop</judo-dao-api-version>
-        <structured-map-proxy-version>1.0.6.20210728_232647_7cb356d_develop</structured-map-proxy-version>
+        <structured-map-proxy-version>1.0.6.20210915_160928_4665afe_feature_JNG_2510_support_binary_type</structured-map-proxy-version>
     </properties>
 
     <url>http://github.com/${project-repositoryId}</url>
@@ -109,6 +110,13 @@
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.annotation</artifactId>
             <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.1</version>
             <scope>provided</scope>
         </dependency>
 
@@ -304,7 +312,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -326,7 +334,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
@@ -423,7 +431,7 @@
                 </repository>
             </distributionManagement>
         </profile>
-        
+
         <profile>
             <id>release-central</id>
             <build>
@@ -504,7 +512,7 @@
                 </plugins>
             </build>
         </profile>
-        
+
         <profile>
             <id>release-p2-judong</id>
             <build>
