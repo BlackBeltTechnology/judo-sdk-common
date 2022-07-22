@@ -1,6 +1,8 @@
 package hu.blackbelt.judo.sdk;
 
 import java.util.UUID;
+
+import hu.blackbelt.judo.dao.api.PayloadValidator;
 import org.eclipse.emf.ecore.EClass;
 
 import hu.blackbelt.judo.dao.api.DAO;
@@ -14,6 +16,8 @@ public abstract class AbstractSdkDao {
     protected AsmModel asmModel;
     protected AsmUtils asmUtils;
 
+    protected PayloadValidator payloadValidator;
+
     public void setDao(DAO<UUID> dao) {
         this.dao = dao;
     }
@@ -21,6 +25,10 @@ public abstract class AbstractSdkDao {
     public void setAsmModel(AsmModel asmModel) {
         this.asmModel = asmModel;
         this.asmUtils = new AsmUtils(asmModel.getResourceSet());
+    }
+
+    public void setPayloadValidator(PayloadValidator payloadValidator) {
+        this.payloadValidator = payloadValidator;
     }
 
     protected EClass getEClass(String fqName) {
