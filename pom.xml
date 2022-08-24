@@ -53,9 +53,9 @@
         <log4j.configuration>log4j.properties</log4j.configuration>
 
         <emf-version>2.21.0</emf-version>
-        <judo-meta-asm-version>1.1.0.20220629_125026_5f754291_develop</judo-meta-asm-version>
-        <judo-dao-api-version>1.0.2.20220722_142101_af9eb8e5_feature_JNG_3849_AddValidatorsToDAO</judo-dao-api-version>
-        <structured-map-proxy-version>1.1.0.20220713_135331_1fa05c17_develop</structured-map-proxy-version>
+        <judo-meta-asm-version>1.1.0.20220810_200335_414c916c_develop</judo-meta-asm-version>
+        <judo-dao-api-version>1.0.2.20220810_200245_6445bc6d_develop</judo-dao-api-version>
+        <structured-map-proxy-version>1.1.0.20220807_065738_525bb031_develop</structured-map-proxy-version>
     </properties>
 
     <url>http://github.com/${project-repositoryId}</url>
