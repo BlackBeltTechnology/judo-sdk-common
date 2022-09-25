@@ -51,7 +51,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
-        <emf-version>2.21.0</emf-version>
+        <emf-version>2.28.0</emf-version>
 
         <slf4j-version>1.7.32</slf4j-version>
         <lombok-version>1.18.24</lombok-version>
