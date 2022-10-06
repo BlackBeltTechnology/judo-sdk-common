@@ -59,7 +59,7 @@
 
         <judo-dao-api-version>1.0.3.20220930_100653_2b31acaa_develop</judo-dao-api-version>
         <judo-dispatcher-api-version>1.0.2</judo-dispatcher-api-version>
-        <judo-meta-asm-version>1.1.2.20221006_004501_e2ea11fc_develop</judo-meta-asm-version>
+        <judo-meta-asm-version>1.1.2.20221006_173554_3d80808b_develop</judo-meta-asm-version>
         <structured-map-proxy-version>1.2.1.20220927_090501_89bce74f_develop</structured-map-proxy-version>
 
         <!--suppress UnresolvedMavenProperty -->
