@@ -1,6 +1,6 @@
 = judo-sdk-common
 
-image::https://github.com/BlackBeltTechnology/judo-runtime-core-jsl/actions/workflows/build.yml/badge.svg?branch=develop[link="https://github.com/BlackBeltTechnology/judo-runtime-core-jsl/actions/workflows/build.yml" float="center"]
+image::https://github.com/BlackBeltTechnology/judo-sdk-common/actions/workflows/build.yml/badge.svg?branch=develop[link="https://github.com/BlackBeltTechnology/judo-sdk-common/actions/workflows/build.yml" float="center"]
 
 == Introduction
 
