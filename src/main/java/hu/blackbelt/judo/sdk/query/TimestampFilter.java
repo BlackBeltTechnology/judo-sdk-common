@@ -20,13 +20,13 @@ package hu.blackbelt.judo.sdk.query;
  * #L%
  */
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 public class TimestampFilter implements Filter {
 
-    private NumericOperation operation;
-    private LocalDateTime value;
+    private final NumericOperation operation;
+    private final LocalDateTime value;
 
     private TimestampFilter(NumericOperation operation, LocalDateTime value) {
         this.operation = operation;
@@ -37,24 +37,48 @@ public class TimestampFilter implements Filter {
         return new TimestampFilter(NumericOperation.LESS_THAN, value);
     }
 
+    public static TimestampFilter lessThan(OffsetDateTime value) {
+        return new TimestampFilter(NumericOperation.LESS_THAN, value.atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
+    }
+
     public static TimestampFilter lessOrEqualThan(LocalDateTime value) {
         return new TimestampFilter(NumericOperation.LESS_OR_EQUAL_THAN, value);
+    }
+
+    public static TimestampFilter lessOrEqualThan(OffsetDateTime value) {
+        return new TimestampFilter(NumericOperation.LESS_OR_EQUAL_THAN, value.atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
     }
 
     public static TimestampFilter greaterOrEqualThan(LocalDateTime value) {
         return new TimestampFilter(NumericOperation.GREATER_OR_EQUAL_THAN, value);
     }
 
+    public static TimestampFilter greaterOrEqualThan(OffsetDateTime value) {
+        return new TimestampFilter(NumericOperation.GREATER_OR_EQUAL_THAN, value.atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
+    }
+
     public static TimestampFilter greaterThan(LocalDateTime value) {
         return new TimestampFilter(NumericOperation.GREATER_THAN, value);
+    }
+
+    public static TimestampFilter greaterThan(OffsetDateTime value) {
+        return new TimestampFilter(NumericOperation.GREATER_THAN, value.atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
     }
 
     public static TimestampFilter equalTo(LocalDateTime value) {
         return new TimestampFilter(NumericOperation.EQUAL_TO, value);
     }
 
+    public static TimestampFilter equalTo(OffsetDateTime value) {
+        return new TimestampFilter(NumericOperation.EQUAL_TO, value.atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
+    }
+
     public static TimestampFilter notEqualTo(LocalDateTime value) {
         return new TimestampFilter(NumericOperation.NOT_EQUAL_TO, value);
+    }
+
+    public static TimestampFilter notEqualTo(OffsetDateTime value) {
+        return new TimestampFilter(NumericOperation.NOT_EQUAL_TO, value.atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
     }
 
     @Override
@@ -66,4 +90,5 @@ public class TimestampFilter implements Filter {
     public String getValueAsString() {
         return "`" + value.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "`";
     }
+
 }
