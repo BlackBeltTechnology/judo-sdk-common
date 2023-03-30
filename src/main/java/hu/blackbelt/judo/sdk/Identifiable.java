@@ -17,24 +17,15 @@ public interface Identifiable extends Serializable {
     @Key(name = "__version")
     Integer getVersion();
 
-    @Key(name = "__createdBy")
-    Optional<String> getCreatedBy();
-
-    @Key(name = "__createdById")
-    Optional<String> getCreatedById();
-
-    @Key(name = "__createTimestamp")
-    Optional<LocalDateTime> getCreated();
-
-    @Key(name = "__updatedBy")
-    Optional<String> getUpdatedBy();
-
-    @Key(name = "__updatedById")
-    Optional<String> getUpdatedById();
-
-    @Key(name = "__updateTimestamp")
-    Optional<LocalDateTime> getUpdated();
-
     <T> T adaptTo(Class<T> target);
 
+    static boolean equals(Identifiable identifiable, Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (Identifiable.class.isAssignableFrom(o.getClass())) {
+            return identifiable.getIdentifier().equals(((Identifiable) o).getIdentifier());
+        }
+        return false;
+    }
 }
