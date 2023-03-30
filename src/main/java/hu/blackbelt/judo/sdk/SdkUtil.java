@@ -38,7 +38,7 @@ public class SdkUtil {
     }
 
     public static <T> T fromPayload(Class<T> resultClass, Map<String, Object> payload) {
-        return MapProxy.builder(resultClass).withMap(payload).withIdentifierField("__identifier").withEnumMappingMethod("getOrdinal").newInstance();
+        return MapProxy.builder(resultClass).withMap(payload).withEnumMappingMethod("getOrdinal").newInstance();
     }
 
     public static <T> Collection<Map<String, Object>> asMap(Collection<T> t) {
