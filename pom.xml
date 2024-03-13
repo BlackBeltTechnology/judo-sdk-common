@@ -60,7 +60,7 @@
 
         <judo-dao-api-version>1.0.4.20240129_105710_5ca64071_develop</judo-dao-api-version>
         <judo-meta-asm-version>1.1.4.20240208_181822_6e9e78d2_develop</judo-meta-asm-version>
-        <structured-map-proxy-version>2.0.0.20240312_104112_02d952af_feature_JNG_5543_The_Optional_is_null_when_the_first_letter_of_an_attribute_is_uppercase</structured-map-proxy-version>
+        <structured-map-proxy-version>2.0.0.20240304_134724_72ade506_develop</structured-map-proxy-version>
 
         <!--suppress UnresolvedMavenProperty -->
         <logback-test-config>${maven.multiModuleProjectDirectory}/logback-test.xml</logback-test-config>
