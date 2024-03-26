@@ -168,12 +168,6 @@
             <version>${judo-dao-api-version}</version>
         </dependency>
         <dependency>
-            <groupId>hu.blackbelt</groupId>
-            <artifactId>structured-map-proxy</artifactId>
-            <version>${structured-map-proxy-version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>30.0-jre</version>
