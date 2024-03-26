@@ -60,7 +60,7 @@
 
         <judo-dao-api-version>1.0.4.20240129_105710_5ca64071_develop</judo-dao-api-version>
         <judo-meta-asm-version>1.1.4.20240321_212235_eed2dd5c_develop</judo-meta-asm-version>
-        <structured-map-proxy-version>2.0.0-SNAPSHOT</structured-map-proxy-version>
+        <structured-map-proxy-version>2.0.0.20240314_085447_62d6e6d2_develop</structured-map-proxy-version>
 
         <!--suppress UnresolvedMavenProperty -->
         <logback-test-config>${maven.multiModuleProjectDirectory}/logback-test.xml</logback-test-config>
