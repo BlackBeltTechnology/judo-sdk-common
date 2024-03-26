@@ -23,13 +23,23 @@ package hu.blackbelt.judo.sdk;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class SdkUtil {
 
     private SdkUtil() {
+    }
+
+    public static <T> Collection<Map<String, Object>> asMap(Collection<T> t) {
+        return ((Collection<?>)t).stream().map(SdkUtil::asMap).collect(Collectors.toList());
+    }
+
+    public static <T> Map<String, Object> asMap(T t) {
+        return ((MapHolder) t).toMap();
     }
 
     public static EReference getReference(EClass eClass, String referenceName) {
