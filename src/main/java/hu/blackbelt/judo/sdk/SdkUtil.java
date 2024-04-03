@@ -20,25 +20,18 @@ package hu.blackbelt.judo.sdk;
  * #L%
  */
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
-
-import hu.blackbelt.structured.map.proxy.MapHolder;
-import hu.blackbelt.structured.map.proxy.MapProxy;
-
 public class SdkUtil {
 
     private SdkUtil() {
-    }
-
-    public static <T> T fromPayload(Class<T> resultClass, Map<String, Object> payload) {
-        return MapProxy.builder(resultClass).withMap(payload).withEnumMappingMethod("getOrdinal").newInstance();
     }
 
     public static <T> Collection<Map<String, Object>> asMap(Collection<T> t) {
