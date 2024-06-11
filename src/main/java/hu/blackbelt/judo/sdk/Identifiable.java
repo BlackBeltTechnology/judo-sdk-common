@@ -19,7 +19,7 @@ public interface Identifiable extends Serializable {
         if (Identifiable.class.isAssignableFrom(o.getClass())) {
             return identifiable.getIdentifier().equals(((Identifiable) o).getIdentifier())
                     && identifiable.getVersion().equals(((Identifiable) o).getVersion())
-                    && identifiable.getEntityType().equals(((Identifiable) o).getEntityType()) ;
+                    && identifiable.getEntityType().equals(((Identifiable) o).getEntityType());
         }
         return false;
     }
