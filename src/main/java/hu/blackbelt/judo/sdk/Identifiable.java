@@ -6,6 +6,8 @@ public interface Identifiable extends Serializable {
 
     Serializable getIdentifier();
 
+    <T> T getIdentifierAs(Class<T> clazz);
+
     String getEntityType();
 
     Integer getVersion();
