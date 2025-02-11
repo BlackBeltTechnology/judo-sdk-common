@@ -20,25 +20,23 @@ package hu.blackbelt.judo.sdk;
  * #L%
  */
 
-import java.util.UUID;
-
-import hu.blackbelt.judo.dao.api.PayloadValidator;
-import org.eclipse.emf.ecore.EClass;
-
 import hu.blackbelt.judo.dao.api.DAO;
-
+import hu.blackbelt.judo.dao.api.PayloadValidator;
 import hu.blackbelt.judo.meta.asm.runtime.AsmModel;
 import hu.blackbelt.judo.meta.asm.runtime.AsmUtils;
+import org.eclipse.emf.ecore.EClass;
+
+import java.io.Serializable;
 
 public abstract class AbstractSdkDao {
 
-    protected DAO<UUID> dao;
+    protected DAO<Serializable> dao;
     protected AsmModel asmModel;
     protected AsmUtils asmUtils;
 
     protected PayloadValidator payloadValidator;
 
-    public void setDao(DAO<UUID> dao) {
+    public void setDao(DAO<Serializable> dao) {
         this.dao = dao;
     }
 
