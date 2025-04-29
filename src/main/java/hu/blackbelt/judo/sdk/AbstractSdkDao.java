@@ -30,13 +30,13 @@ import java.io.Serializable;
 
 public abstract class AbstractSdkDao {
 
-    protected DAO<Serializable> dao;
+    protected DAO dao;
     protected AsmModel asmModel;
     protected AsmUtils asmUtils;
 
     protected PayloadValidator payloadValidator;
 
-    public void setDao(DAO<Serializable> dao) {
+    public void setDao(DAO dao) {
         this.dao = dao;
     }
 
