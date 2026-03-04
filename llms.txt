@@ -1,0 +1,46 @@
+# judo-sdk-common
+
+> Base classes and interfaces that generated JUDO SDK source code depends on at runtime — defines entity identity, map-based payload conversion, DAO base class, and a type-safe query filter framework.
+
+Key facts:
+- Java 21, single-module Maven project with OSGi bundle packaging
+- Build tool: Maven 3.9.4 with Maven Wrapper (`mvnw`)
+- Core dependencies: Eclipse EMF, judo-dao-api, judo-meta-asm (Architecture Specific Model)
+- Packaged as an OSGi bundle exporting `hu.blackbelt.judo.sdk*`
+- Testing: JUnit 5, Mockito 4, Hamcrest 2, JaCoCo for coverage
+- License: Eclipse Public License 2.0 (EPL-2.0)
+
+## Docs
+
+- [README.md](README.md): Project overview, architecture diagrams, and build commands
+- [AGENTS.md](AGENTS.md): Developer guide with directory structure, API reference, build commands, and coding conventions
+- [CONTRIBUTING.md](CONTRIBUTING.md): Development setup and pull request guidelines
+- [.github/CIFLOW.md](.github/CIFLOW.md): Branching strategy and GitHub Actions CI/CD pipeline
+
+## Source — Core Layer
+
+- [src/main/java/hu/blackbelt/judo/sdk/AbstractSdkDao.java](src/main/java/hu/blackbelt/judo/sdk/AbstractSdkDao.java): Abstract base class for all generated SDK DAOs; wires DAO, AsmModel, and PayloadValidator
+- [src/main/java/hu/blackbelt/judo/sdk/Identifiable.java](src/main/java/hu/blackbelt/judo/sdk/Identifiable.java): Entity identity contract — identifier, entity type, version, and type adaptation
+- [src/main/java/hu/blackbelt/judo/sdk/MapHolder.java](src/main/java/hu/blackbelt/judo/sdk/MapHolder.java): Contract for objects convertible to Map<String, Object> (the DAO payload format)
+- [src/main/java/hu/blackbelt/judo/sdk/SdkUtil.java](src/main/java/hu/blackbelt/judo/sdk/SdkUtil.java): Static helpers for entity-to-map conversion and EMF EReference resolution
+- [src/main/java/hu/blackbelt/judo/sdk/Enumeration.java](src/main/java/hu/blackbelt/judo/sdk/Enumeration.java): Contract for generated enum types with name, ordinal, and fully qualified name
+- [src/main/java/hu/blackbelt/judo/sdk/NamedElement.java](src/main/java/hu/blackbelt/judo/sdk/NamedElement.java): Simple interface for elements with a display name
+
+## Source — Query Filter Framework
+
+- [src/main/java/hu/blackbelt/judo/sdk/query/Filter.java](src/main/java/hu/blackbelt/judo/sdk/query/Filter.java): Base filter interface producing expression strings via Operation patterns
+- [src/main/java/hu/blackbelt/judo/sdk/query/Operation.java](src/main/java/hu/blackbelt/judo/sdk/query/Operation.java): Defines getPattern() returning a MessageFormat pattern string
+- [src/main/java/hu/blackbelt/judo/sdk/query/StringFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/StringFilter.java): String comparisons plus matches, like, and ilike operations
+- [src/main/java/hu/blackbelt/judo/sdk/query/NumberFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/NumberFilter.java): Numeric comparisons (==, !=, <, >, <=, >=)
+- [src/main/java/hu/blackbelt/judo/sdk/query/BooleanFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/BooleanFilter.java): Boolean predicates (isTrue, isFalse)
+- [src/main/java/hu/blackbelt/judo/sdk/query/DateFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/DateFilter.java): Date comparisons using LocalDate
+- [src/main/java/hu/blackbelt/judo/sdk/query/TimeFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/TimeFilter.java): Time comparisons using LocalTime
+- [src/main/java/hu/blackbelt/judo/sdk/query/TimestampFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/TimestampFilter.java): Timestamp comparisons using LocalDateTime/OffsetDateTime (normalized to UTC)
+- [src/main/java/hu/blackbelt/judo/sdk/query/EnumerationFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/EnumerationFilter.java): Enum equality/inequality using fully qualified names
+
+## Optional
+
+- [pom.xml](pom.xml): Maven build configuration with OSGi bundle packaging
+- [.github/workflows/build.yml](.github/workflows/build.yml): Main CI workflow — build, test, deploy
+- [.github/workflows/release.yml](.github/workflows/release.yml): Manual release workflow
+- [LICENSE.txt](LICENSE.txt): Eclipse Public License 2.0 text
