@@ -38,6 +38,27 @@ Key facts:
 - [src/main/java/hu/blackbelt/judo/sdk/query/TimestampFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/TimestampFilter.java): Timestamp comparisons using LocalDateTime/OffsetDateTime (normalized to UTC)
 - [src/main/java/hu/blackbelt/judo/sdk/query/EnumerationFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/EnumerationFilter.java): Enum equality/inequality using fully qualified names
 
+## Depends on
+
+- [judo-meta-asm](../../models/judo-meta-asm): models/judo-meta-asm
+- [judo-dao-api](../judo-dao-api): runtime/judo-dao-api
+
+## Used by
+
+- [judo-platform](../judo-platform): runtime/judo-platform
+- [judo-runtime-core](../judo-runtime-core): runtime/judo-runtime-core
+- [judo-runtime-core-jsl](../judo-runtime-core-jsl): runtime/judo-runtime-core-jsl
+- [judo-services](../judo-services): runtime/judo-services
+- [judo-tatami](../judo-tatami): runtime/judo-tatami
+- [judo-tatami-base](../judo-tatami-base): runtime/judo-tatami-base
+- [judo-tatami-jsl](../judo-tatami-jsl): runtime/judo-tatami-jsl
+- [judo-jsl-springboot-parent](../../spring/judo-jsl-springboot-parent): spring/judo-jsl-springboot-parent
+- [judo-jsl-springboot-starter](../../spring/judo-jsl-springboot-starter): spring/judo-jsl-springboot-starter
+- [judo-psm-generator-jaxrs](../../template/judo-psm-generator-jaxrs): template/judo-psm-generator-jaxrs
+- [judo-psm-generator-report](../../template/judo-psm-generator-report): template/judo-psm-generator-report
+- [judo-psm-generator-restassured](../../template/judo-psm-generator-restassured): template/judo-psm-generator-restassured
+- [judo-psm-generator-sdk-core](../../template/judo-psm-generator-sdk-core): template/judo-psm-generator-sdk-core
+
 ## Optional
 
 - [pom.xml](pom.xml): Maven build configuration with OSGi bundle packaging
