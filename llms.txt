@@ -1,0 +1,67 @@
+# judo-sdk-common
+
+> Base classes and interfaces that generated JUDO SDK source code depends on at runtime — defines entity identity, map-based payload conversion, DAO base class, and a type-safe query filter framework.
+
+Key facts:
+- Java 21, single-module Maven project with OSGi bundle packaging
+- Build tool: Maven 3.9.4 with Maven Wrapper (`mvnw`)
+- Core dependencies: Eclipse EMF, judo-dao-api, judo-meta-asm (Architecture Specific Model)
+- Packaged as an OSGi bundle exporting `hu.blackbelt.judo.sdk*`
+- Testing: JUnit 5, Mockito 4, Hamcrest 2, JaCoCo for coverage
+- License: Eclipse Public License 2.0 (EPL-2.0)
+
+## Docs
+
+- [README.md](README.md): Project overview, architecture diagrams, and build commands
+- [AGENTS.md](AGENTS.md): Developer guide with directory structure, API reference, build commands, and coding conventions
+- [CONTRIBUTING.md](CONTRIBUTING.md): Development setup and pull request guidelines
+- [.github/CIFLOW.md](.github/CIFLOW.md): Branching strategy and GitHub Actions CI/CD pipeline
+
+## Source — Core Layer
+
+- [src/main/java/hu/blackbelt/judo/sdk/AbstractSdkDao.java](src/main/java/hu/blackbelt/judo/sdk/AbstractSdkDao.java): Abstract base class for all generated SDK DAOs; wires DAO, AsmModel, and PayloadValidator
+- [src/main/java/hu/blackbelt/judo/sdk/Identifiable.java](src/main/java/hu/blackbelt/judo/sdk/Identifiable.java): Entity identity contract — identifier, entity type, version, and type adaptation
+- [src/main/java/hu/blackbelt/judo/sdk/MapHolder.java](src/main/java/hu/blackbelt/judo/sdk/MapHolder.java): Contract for objects convertible to Map<String, Object> (the DAO payload format)
+- [src/main/java/hu/blackbelt/judo/sdk/SdkUtil.java](src/main/java/hu/blackbelt/judo/sdk/SdkUtil.java): Static helpers for entity-to-map conversion and EMF EReference resolution
+- [src/main/java/hu/blackbelt/judo/sdk/Enumeration.java](src/main/java/hu/blackbelt/judo/sdk/Enumeration.java): Contract for generated enum types with name, ordinal, and fully qualified name
+- [src/main/java/hu/blackbelt/judo/sdk/NamedElement.java](src/main/java/hu/blackbelt/judo/sdk/NamedElement.java): Simple interface for elements with a display name
+
+## Source — Query Filter Framework
+
+- [src/main/java/hu/blackbelt/judo/sdk/query/Filter.java](src/main/java/hu/blackbelt/judo/sdk/query/Filter.java): Base filter interface producing expression strings via Operation patterns
+- [src/main/java/hu/blackbelt/judo/sdk/query/Operation.java](src/main/java/hu/blackbelt/judo/sdk/query/Operation.java): Defines getPattern() returning a MessageFormat pattern string
+- [src/main/java/hu/blackbelt/judo/sdk/query/StringFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/StringFilter.java): String comparisons plus matches, like, and ilike operations
+- [src/main/java/hu/blackbelt/judo/sdk/query/NumberFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/NumberFilter.java): Numeric comparisons (==, !=, <, >, <=, >=)
+- [src/main/java/hu/blackbelt/judo/sdk/query/BooleanFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/BooleanFilter.java): Boolean predicates (isTrue, isFalse)
+- [src/main/java/hu/blackbelt/judo/sdk/query/DateFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/DateFilter.java): Date comparisons using LocalDate
+- [src/main/java/hu/blackbelt/judo/sdk/query/TimeFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/TimeFilter.java): Time comparisons using LocalTime
+- [src/main/java/hu/blackbelt/judo/sdk/query/TimestampFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/TimestampFilter.java): Timestamp comparisons using LocalDateTime/OffsetDateTime (normalized to UTC)
+- [src/main/java/hu/blackbelt/judo/sdk/query/EnumerationFilter.java](src/main/java/hu/blackbelt/judo/sdk/query/EnumerationFilter.java): Enum equality/inequality using fully qualified names
+
+## Depends on
+
+- [judo-meta-asm](../../models/judo-meta-asm): ASM metamodel — Ecore-based architecture model with builders and validation
+- [judo-dao-api](../judo-dao-api): Core DAO interfaces for CRUD, query, navigation, and validation
+
+## Used by
+
+- [judo-platform](../judo-platform): Model-driven OSGi runtime platform with REST APIs and Karaf deployment
+- [judo-runtime-core](../judo-runtime-core): Multi-module runtime engine — data access, business logic, REST, and security
+- [judo-runtime-core-jsl](../judo-runtime-core-jsl): JSL support for runtime core — model parsing through to DAOs and schema
+- [judo-services](../judo-services): OSGi runtime services enabling multiple data models in a single Karaf container
+- [judo-tatami](../judo-tatami): Model transformation pipeline — ESM/PSM to deployable application artifacts
+- [judo-tatami-base](../judo-tatami-base): PSM transformation pipeline — models to schemas, expressions, and configurations
+- [judo-tatami-jsl](../judo-tatami-jsl): JSL-to-runtime model transformation engine (PSM, ASM, UI, RDBMS, etc.)
+- [judo-jsl-springboot-parent](../../spring/judo-jsl-springboot-parent): Parent POM for JUDO JSL Spring Boot applications
+- [judo-jsl-springboot-starter](../../spring/judo-jsl-springboot-starter): Spring Boot starter aggregating the entire JUDO runtime stack
+- [judo-psm-generator-jaxrs](../../template/judo-psm-generator-jaxrs): Generates JAX-RS interfaces, DTOs, and service implementations from PSM
+- [judo-psm-generator-report](../../template/judo-psm-generator-report): Generates JasperReports reporting solutions from PSM models
+- [judo-psm-generator-restassured](../../template/judo-psm-generator-restassured): Generates REST Assured test API clients from PSM
+- [judo-psm-generator-sdk-core](../../template/judo-psm-generator-sdk-core): Generates SDK core layer — DAOs, DTOs, builders, and DI wiring from PSM
+
+## Optional
+
+- [pom.xml](pom.xml): Maven build configuration with OSGi bundle packaging
+- [.github/workflows/build.yml](.github/workflows/build.yml): Main CI workflow — build, test, deploy
+- [.github/workflows/release.yml](.github/workflows/release.yml): Manual release workflow
+- [LICENSE.txt](LICENSE.txt): Eclipse Public License 2.0 text
