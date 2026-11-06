@@ -1,0 +1,14 @@
+# `src/main/java/hu/blackbelt/judo/sdk` — core contracts generated SDK code compiles against
+
+Everything here is API surface for code emitted by the JUDO generators, not for hand-written
+callers. The package is exported wholesale as `hu.blackbelt.judo.sdk*` by the Felix bundle
+plugin, so any signature change here breaks every generated SDK downstream.
+
+| File | Purpose |
+|---|---|
+| `AbstractSdkDao.java` | Superclass every generated DAO extends. Holds `protected` `dao`, `asmModel`, `asmUtils`, `payloadValidator`. Exports `setDao(DAO)`, `setAsmModel(AsmModel)`, `setPayloadValidator(PayloadValidator)`, `protected getEClass(String fqName)`. `setAsmModel` rebuilds `asmUtils` from `asmModel.getResourceSet()`, so it must run before any `getEClass`. `getEClass` unwraps `getClassByFQName(fqName).get()` — unknown FQN throws `NoSuchElementException`. |
+| `Enumeration.java` | Contract every generated enum type implements. Declares `getName()`, `getOrdinal()` returning `int`, `getFqName()`. `EnumerationFilter.getValueAsString()` emits `getFqName()` bare into a JQL predicate, so the FQ name must be the ASM enumeration name, not the Java class name. Does not extend `NamedElement` despite declaring `getName()`. |
+| `Identifiable.java` | Entity identity contract; extends `Serializable`. Declares `getIdentifier()`, `getIdentifierAs(Class<T>)`, `getEntityType()`, `getVersion()`, `adaptTo(Class<T>)`, plus static `equals(Identifiable, Object)`. That static compares identifier, `getVersion()` and `getEntityType()`, so two reads of one row at different versions are unequal; returns `false` for `null` or non-`Identifiable`, and throws `NullPointerException` on a null identifier or version. |
+| `MapHolder.java` | Bridge from typed SDK object to the `Map<String, Object>` payload format `judo-dao-api` consumes. Declares `toMap()` and `adaptTo(Class<T>)`. `SdkUtil.asMap(T)` casts its argument to this interface unchecked, so a payload object not implementing it fails at runtime with `ClassCastException`. Carries no EPL header, unlike its siblings. |
+| `NamedElement.java` | Display-name contract for generated elements, declaring `getName()` only. Deliberately narrow: no identity and no payload surface, so a type needing either implements `Identifiable` or `MapHolder` alongside it. `Enumeration` declares the same method independently and does not inherit from here — the two are unrelated types to the compiler. |
+| `SdkUtil.java` | Static conversion entry points between typed SDK objects and DAO maps; private constructor blocks instantiation. Exports `asMap(Collection<T>)`, `asMap(T)`, four `asMap(String, Object …)` overloads for 1–4 pairs, and `getReference(EClass, String)`. `asMap(T)` casts to `MapHolder`; `getReference` filters `getEAllReferences()` by name then calls `Optional.get()`, throwing `NoSuchElementException` for an unknown reference. Returned maps are mutable `HashMap`s. |
